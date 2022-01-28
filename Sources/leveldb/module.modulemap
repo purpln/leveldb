@@ -1,5 +1,5 @@
 module leveldb [system] {
-    umbrella header "leveldb.h"
-    module * { export * }
+    header "leveldb.h"
+    link "leveldb"
     export *
 }

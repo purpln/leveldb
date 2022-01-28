@@ -5,5 +5,5 @@ import PackageDescription
 let package = Package(
     name: "leveldb",
     products: [.library(name: "leveldb", targets: ["leveldb"])],
-    targets: [.systemLibrary(name: "leveldb")]
+    targets: [.systemLibrary(name: "leveldb", pkgConfig: "leveldb")]
 )
