@@ -1,7 +1,7 @@
 ```bash
 brew install leveldb
 
-ln -s /opt/homebrew/include/leveldb /usr/local/include/leveldb
+/usr/local/lib/pkgconfig/leveldb.pc
 
 osascript -e 'quit app "XCode"'
 ```
