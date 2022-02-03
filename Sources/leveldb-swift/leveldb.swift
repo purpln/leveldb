@@ -72,7 +72,7 @@ extension LevelDB {
 }
 
 extension LevelDB {
-    public func enumerated(with keyPrefix: [UInt8]? = nil, _ closure: ([UInt8], [UInt8]) -> Void) {
+    public func enumerated(with keyPrefix: [UInt8]? = nil) -> [(key: [UInt8], value: [UInt8])] {
         let options = leveldb_readoptions_create()
         let iterator = leveldb_create_iterator(database, options)
         defer {
@@ -105,6 +105,7 @@ extension LevelDB {
         }
 
         seekToBegining()
+        var array: [(key: [UInt8], value: [UInt8])] = []
         while isValid {
             defer { leveldb_iter_next(iterator) }
 
@@ -115,12 +116,15 @@ extension LevelDB {
 
             let keyRawPointer = UnsafeRawPointer(keyPointer)
             let keyBuffer = UnsafeBufferPointer(start: keyRawPointer.assumingMemoryBound(to: Int8.self), count: keyLength)
+            let key = Array(keyBuffer.map { UInt8(bitPattern: $0) })
 
             let valueRawPointer = UnsafeRawPointer(valuePointer)
             let valueBuffer = UnsafeBufferPointer(start: valueRawPointer.assumingMemoryBound(to: Int8.self), count: valueLength)
+            let value = Array(valueBuffer.map { UInt8(bitPattern: $0) })
 
-            closure(Array(keyBuffer.map { UInt8(bitPattern: $0) }), Array(valueBuffer.map { UInt8(bitPattern: $0) }))
+            array.append((key, value))
         }
+        return array
     }
 }
 
