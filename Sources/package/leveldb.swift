@@ -72,7 +72,7 @@ extension LevelDB {
 }
 
 extension LevelDB {
-    public func enumerateKeys(with keyPrefix: [UInt8]? = nil, _ closure: ([UInt8], [UInt8]) -> Void) {
+    public func enumerated(with keyPrefix: [UInt8]? = nil, _ closure: ([UInt8], [UInt8]) -> Void) {
         let options = leveldb_readoptions_create()
         let iterator = leveldb_create_iterator(database, options)
         defer {
