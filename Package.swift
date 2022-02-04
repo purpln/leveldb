@@ -4,6 +4,6 @@ import PackageDescription
 
 let package = Package(
     name: "leveldb",
-    products: [.library(name: "leveldb", targets: ["leveldb-swift"])],
-    targets: [.systemLibrary(name: "leveldb", pkgConfig: "leveldb"), .target(name: "leveldb-swift", dependencies: ["leveldb"])]
+    products: [.library(name: "leveldb", targets: ["LevelDB"])],
+    targets: [.systemLibrary(name: "cleveldb", pkgConfig: "leveldb"), .target(name: "LevelDB", dependencies: ["cleveldb"])]
 )
