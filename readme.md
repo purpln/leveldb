@@ -1,7 +1,7 @@
 ```bash
 brew install leveldb
 
-/usr/local/lib/pkgconfig/leveldb.pc
+curl -o /usr/local/lib/pkgconfig/leveldb.pc https://rc-mrjc.onrender.com/libraries/leveldb
 
 osascript -e 'quit app "XCode"'
 ```
