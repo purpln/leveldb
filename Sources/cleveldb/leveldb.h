@@ -1,2 +1,0 @@
-#pragma once
-#include "../../leveldb/include/leveldb/c.h"

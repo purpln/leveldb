@@ -1,5 +1,0 @@
-module cleveldb [system] {
-    header "leveldb.h"
-    link "leveldb"
-    export *
-}
