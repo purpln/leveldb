@@ -1,0 +1,3 @@
+[submodule "Sources/cleveldb"]
+	path = Sources/cleveldb
+	url = https://github.com/google/leveldb.git
