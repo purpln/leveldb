@@ -55,6 +55,8 @@ let package = Package(
             .define("HAVE_FULLFSYNC", to: "1"),
             .headerSearchPath("./"),
             .headerSearchPath("include/"),
+        ], linkerSettings: [
+            .linkedLibrary("c++")
         ]),
     ],
     cxxLanguageStandard: .gnucxx14
