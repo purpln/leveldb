@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "leveldb", platforms: [.iOS(.v11), .macOS(.v10_15)],
+    name: "leveldb",
     products: [.library(name: "leveldb", targets: ["LevelDB"])],
     targets: [
         .target(name: "LevelDB", dependencies: ["cleveldb"]),
@@ -54,9 +54,8 @@ let package = Package(
             .define("LEVELDB_PLATFORM_POSIX", to: "1"),
             .define("HAVE_FULLFSYNC", to: "1"),
             .headerSearchPath("./"),
-            .headerSearchPath("include/")
+            .headerSearchPath("include/"),
         ]),
     ],
-    cLanguageStandard: .c11,
-    cxxLanguageStandard: .cxx11
+    cxxLanguageStandard: .gnucxx14
 )
