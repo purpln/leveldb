@@ -10,7 +10,7 @@ let package = Package(
     ],
     targets: [
         .target(name: "LevelDB-swift", dependencies: ["LevelDB-wrapper"]),
-        .target(name: "LevelDB-wrapper", dependencies: ["leveldb"]),
+        .target(name: "LevelDB-wrapper", dependencies: ["leveldb"], linkerSettings: [.linkedLibrary("c++abi")]),
         .binaryTarget(name: "leveldb", path: "leveldb.xcframework")
     ],
     cxxLanguageStandard: .cxx20
