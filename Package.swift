@@ -13,5 +13,5 @@ let package = Package(
         .target(name: "LevelDB-wrapper", dependencies: ["leveldb"]),
         .binaryTarget(name: "leveldb", path: "leveldb.xcframework")
     ],
-    cxxLanguageStandard: .gnucxx14
+    cxxLanguageStandard: .cxx20
 )
