@@ -1,4 +1,4 @@
-import cleveldb
+import LevelDB_wrapper
 
 public class LevelDB {
     private let database: OpaquePointer
