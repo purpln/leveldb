@@ -5,8 +5,7 @@ import PackageDescription
 let package = Package(
     name: "leveldb",
     products: [
-        .library(name: "LevelDB", targets: ["LevelDB"]),
-        .library(name: "CLevelDB", targets: ["CLevelDB"])
+        .library(name: "LevelDB", targets: ["LevelDB"])
     ],
     targets: [
         .target(name: "LevelDB", dependencies: ["CLevelDB"], swiftSettings: [.interoperabilityMode(.Cxx)]),
