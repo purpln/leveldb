@@ -8,7 +8,7 @@ let package = Package(
         .library(name: "LevelDB", targets: ["LevelDB", "CLevelDB"])
     ],
     targets: [
-        .target(name: "LevelDB", dependencies: ["CLevelDB"]),
+        .target(name: "LevelDB", dependencies: ["CLevelDB"], swiftSettings: [.interoperabilityMode(.Cxx)]),
         .target(name: "CLevelDB", dependencies: [], exclude: [
             "db/leveldbutil.cc",
             "util/env_windows.cc",
@@ -51,7 +51,7 @@ let package = Package(
             "table",
             "util",
             "include",
-        ], cSettings: [
+        ], cxxSettings: [
             .define("LEVELDB_IS_BIG_ENDIAN", to: "0"),
             .define("LEVELDB_PLATFORM_POSIX", to: "1"),
             .define("HAVE_FULLFSYNC", to: "1"),
