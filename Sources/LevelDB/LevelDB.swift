@@ -1,4 +1,4 @@
-@_implementationOnly import CLevelDB
+import CLevelDB
 
 public class LevelDB {
     private let database: OpaquePointer

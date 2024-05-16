@@ -8,8 +8,10 @@ let package = Package(
         .library(name: "LevelDB", targets: ["LevelDB"])
     ],
     targets: [
-        .target(name: "LevelDB", dependencies: ["CLevelDB"], swiftSettings: [.interoperabilityMode(.Cxx)]),
-        .target(name: "CLevelDB", dependencies: [], exclude: [
+        .target(name: "LevelDB", dependencies: [
+            .target(name: "CLevelDB")
+        ]),
+        .target(name: "CLevelDB", exclude: [
             "db/leveldbutil.cc",
             "util/env_windows.cc",
             "util/testutil.cc",
