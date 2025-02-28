@@ -58,7 +58,5 @@ let package = Package(name: "leveldb", products: [
         .headerSearchPath("."),
         .headerSearchPath("include"),
         .define("NDEBUG", .when(configuration: .release)),
-    ], linkerSettings: [
-        .linkedLibrary("c++"),
     ]),
 ], cxxLanguageStandard: .cxx17)
