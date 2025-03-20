@@ -54,6 +54,7 @@ let package = Package(name: "leveldb", products: [
         "util",
         "include",
     ], cxxSettings: [
+        .define("_ALLOW_COMPILER_AND_STL_VERSION_MISMATCH", .when(platforms: [.windows])),
         .define("LEVELDB_PLATFORM_WINDOWS", .when(platforms: [.windows])),
         .define("LEVELDB_PLATFORM_POSIX", .when(platforms: posix)),
         .define("HAVE_FULLFSYNC", .when(platforms: apple)),
