@@ -1,18 +1,19 @@
-// swift-tools-version: 5.5
+// swift-tools-version: 5.7
 
 import PackageDescription
 
-let apple: [Platform] = [
-    .macOS, .macCatalyst, .iOS, .tvOS, .watchOS
-]
+let apple: [Platform] = [.macOS, .macCatalyst, .iOS, .tvOS, .watchOS, .visionOS]
+let posix: [Platform] = [.android, .linux] + apple
+
+let windows: Bool = Context.environment["OS"] == "Windows_NT"
+
+let env = windows ? ["util/env_posix.cc"] : ["util/env_windows.cc"]
 
 let package = Package(name: "leveldb", products: [
     .library(name: "leveldb", targets: ["leveldb"]),
 ], targets: [
     .target(name: "leveldb", exclude: [
         "db/leveldbutil.cc",
-        "util/env_windows.cc",
-        "util/testutil.cc",
         "db/autocompact_test.cc",
         "db/corruption_test.cc",
         "db/db_test.cc",
@@ -42,19 +43,21 @@ let package = Package(name: "leveldb", products: [
         "util/logging_test.cc",
         "util/no_destructor_test.cc",
         "util/status_test.cc",
+        "util/testutil.cc",
         "db/c_test.c",
         "port/README.md",
         "port/port_config.h.in",
-    ], sources: [
+    ] + env, sources: [
         "db",
         "port",
         "table",
         "util",
         "include",
     ], cxxSettings: [
-        .define("LEVELDB_IS_BIG_ENDIAN", to: "0"),
-        .define("LEVELDB_PLATFORM_POSIX", to: "1"),
-        .define("HAVE_FULLFSYNC", to: "1", .when(platforms: apple)),
+        .define("_ALLOW_COMPILER_AND_STL_VERSION_MISMATCH", .when(platforms: [.windows])),
+        .define("LEVELDB_PLATFORM_WINDOWS", .when(platforms: [.windows])),
+        .define("LEVELDB_PLATFORM_POSIX", .when(platforms: posix)),
+        .define("HAVE_FULLFSYNC", .when(platforms: apple)),
         .headerSearchPath("."),
         .headerSearchPath("include"),
         .define("NDEBUG", .when(configuration: .release)),
