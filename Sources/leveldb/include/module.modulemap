@@ -1,4 +1,4 @@
 module leveldb {
-    header "../../../third-party/leveldb/include/leveldb/c.h"
+    header "../leveldb/include/leveldb/c.h"
     export *
 }

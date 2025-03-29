@@ -52,14 +52,13 @@ let package = Package(name: "leveldb", products: [
         "leveldb/port",
         "leveldb/table",
         "leveldb/util",
-        //"leveldb/include",
     ], cxxSettings: [
         .define("_ALLOW_COMPILER_AND_STL_VERSION_MISMATCH", .when(platforms: [.windows])),
         .define("LEVELDB_PLATFORM_WINDOWS", .when(platforms: [.windows])),
         .define("LEVELDB_PLATFORM_POSIX", .when(platforms: posix)),
         .define("HAVE_FULLFSYNC", .when(platforms: apple)),
-        .headerSearchPath("leveldb"),
         .headerSearchPath("leveldb/include"),
+        .headerSearchPath("leveldb"),
         .define("NDEBUG", .when(configuration: .release)),
     ]),
 ], cxxLanguageStandard: .cxx17)
