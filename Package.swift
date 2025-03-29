@@ -52,7 +52,7 @@ let package = Package(name: "leveldb", products: [
         "leveldb/port",
         "leveldb/table",
         "leveldb/util",
-        "leveldb/include",
+        //"leveldb/include",
     ], cxxSettings: [
         .define("_ALLOW_COMPILER_AND_STL_VERSION_MISMATCH", .when(platforms: [.windows])),
         .define("LEVELDB_PLATFORM_WINDOWS", .when(platforms: [.windows])),
